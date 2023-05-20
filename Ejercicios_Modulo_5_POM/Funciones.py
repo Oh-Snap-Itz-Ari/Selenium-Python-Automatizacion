@@ -17,6 +17,7 @@ class Funciones_Globales (): # 1. Se crea la clase Funciones_Globales y se crea 
     def Navegar(self,url,tiempo):
         self.driver.get(url) # 2. Espera a que se le envie url a través de la función Navegar
         self.driver.maximize_window()
+        print("\nPágina abierta de forma satisfactoria:\n"+str(url))
         t = time.sleep(tiempo)
         return t
 
@@ -27,12 +28,13 @@ class Funciones_Globales (): # 1. Se crea la clase Funciones_Globales y se crea 
             val = self.driver.find_element(By.XPATH, (xpath)) # 5. Selecciona el elemento a través de su XPath
             val.clear()  # 6. Permite limpiar el campo por si tiene algún valor escrito
             val.send_keys(texto)  # 7. Recibe el valor de texto en la función y lo escribe sobre el elemento
+            print("\n- Escribiendo en el campo con XPath ({}) el texto -> {}".format(xpath,texto))
             t = time.sleep(tiempo)  # 8. Recibe el valor de tiempo y lo implementa una vez que se escribe el texto
             return t
 
         except TimeoutException as ex:
             print(ex.msg)
-            print("\nNo se encontró el elemento:\n- " + xpath)
+            print("\n- No se encontró el elemento:\n- " + xpath)
             return t
 
     def TextoByID(self,id,texto,tiempo):
@@ -42,12 +44,13 @@ class Funciones_Globales (): # 1. Se crea la clase Funciones_Globales y se crea 
             val = self.driver.find_element(By.ID, (id))
             val.clear()  # 10. Permite limpiar el campo por si tiene algún valor escrito
             val.send_keys(texto)  # 11. Recibe el valor de texto en la función y lo escribe sobre el elemento
+            print("\n- Escribiendo en el campo con ID ({}) el texto -> {}".format(id, texto))
             t = time.sleep(tiempo)  # 12. Recibe el valor de tiempo y lo implementa una vez que se escribe el texto
             return t
 
         except TimeoutException as ex:
             print(ex.msg)
-            print("\nNo se encontró el elemento:\n- " + id)
+            print("\n- No se encontró el elemento:\n- " + id)
             return t
 
     def ClickByXPath(self,xpath,tiempo):
@@ -56,12 +59,13 @@ class Funciones_Globales (): # 1. Se crea la clase Funciones_Globales y se crea 
             val = self.driver.execute_script("arguments[0].scrollIntoView();", val) # 14. Si lo encuentra va hacia el elemento
             val = self.driver.find_element(By.XPATH, (xpath)) # 15. Selecciona el elemento a través de su XPath
             val.click()
+            print("\n- Se da click en el campo con XPath -> ({})".format(xpath))
             t = time.sleep(tiempo)  # 16. Recibe el valor de tiempo y lo implementa una vez que se escribe el texto
             return t
 
         except TimeoutException as ex:
             print(ex.msg)
-            print("\nNo se encontró el elemento:\n- " + xpath)
+            print("\n- No se encontró el elemento:\n- " + xpath)
             return t
 
     def ClickByID(self,id,tiempo):
@@ -70,10 +74,55 @@ class Funciones_Globales (): # 1. Se crea la clase Funciones_Globales y se crea 
             val = self.driver.execute_script("arguments[0].scrollIntoView();", val) # 14. Si lo encuentra va hacia el elemento
             val = self.driver.find_element(By.XPATH, (id)) # 15. Selecciona el elemento a través de su XPath
             val.click()
+            print("\n- Se da click en el campo con ID ({})".format(id))
             t = time.sleep(tiempo)  # 16. Recibe el valor de tiempo y lo implementa una vez que se escribe el texto
             return t
 
         except TimeoutException as ex:
             print(ex.msg)
-            print("\nNo se encontró el elemento:\n- " + id)
+            print("\n- No se encontró el elemento:\n- " + id)
             return t
+
+    def Select_XPath_Text(self, xpath, text, tiempo):
+        try:
+            val = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, xpath)))  # 13. Busca el elemento
+            val = self.driver.execute_script("arguments[0].scrollIntoView();",val)  # 14. Si lo encuentra va hacia el elemento
+            val = self.driver.find_element(By.XPATH, (xpath))  # 15. Selecciona el elemento a través de su XPath
+            val = Select(val)
+            val.select_by_visible_text(text) # 16. Busca y selecciona el valor de text en el listado
+            print("\n- El campo seleccionado es -> ({})".format(text))
+            t = time.sleep(tiempo)  # 17. Recibe el valor de tiempo y lo implementa una vez que se escribe el texto
+            return t
+
+        except TimeoutException as ex:
+            print(ex.msg)
+            print("\n- No se encontró el elemento:\n- " + xpath)
+            return t
+
+    def Select_XPath_Type(self, xpath, type, dato, tiempo):
+        try:
+            val = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, xpath)))  # 13. Busca el elemento
+            val = self.driver.execute_script("arguments[0].scrollIntoView();",val)  # 14. Si lo encuentra va hacia el elemento
+            val = self.driver.find_element(By.XPATH, (xpath))  # 15. Selecciona el elemento a través de su XPath
+            val = Select(val)
+
+            if(type == "text"):
+                val.select_by_visible_text(dato)  # 16. Busca y selecciona el valor de text en el listado
+
+            elif(type == "index"):
+                val.select_by_index(dato)
+
+            elif(type == "value"):
+                val.select_by_value(dato)
+
+            print("\n- El campo seleccionado es -> ({})".format(dato))
+            t = time.sleep(tiempo)  # 17. Recibe el valor de tiempo y lo implementa una vez que se escribe el texto
+            return t
+
+        except TimeoutException as ex:
+            print(ex.msg)
+            print("\n- No se encontró el elemento:\n- " + xpath)
+            return t
+
+    def Salida(self):
+        print("\nLa prueba ha sido finalizada de forma satisfactoria.")
