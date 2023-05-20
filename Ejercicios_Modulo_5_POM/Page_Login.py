@@ -15,6 +15,7 @@ class Pagina_Login (): # 1. Se crea la clase Pagina_Login y se crea la inicializ
     def __init__(self,driver):
         self.driver = driver
 
+    # Función que permite llenar el formulario de Login, haciendo llenado de diferentes funcione pertenecientes a Funciones_Globales
     def Login_Master(self,url,username,password,t):
         driver = self.driver
         f = Funciones_Globales(driver)  # 2. Estas 2 primeras lineas siempre se deben hacer, para que se vinculen con el Funciones.py

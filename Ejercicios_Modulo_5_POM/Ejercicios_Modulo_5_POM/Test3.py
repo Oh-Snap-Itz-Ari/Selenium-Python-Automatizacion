@@ -26,18 +26,37 @@ class baseTest(unittest.TestCase):
 
     def test_POM2(self):
         driver = self.driver
-        f = Funciones_Globales(
-            driver)  # 5. Se importan los driver tanto de Funciones_Globales, Pagina_Login y DropdownForm
+        f = Funciones_Globales(driver)  # 5. Se importan los driver tanto de Funciones_Globales, Pagina_Login y DropdownForm
         f.Navegar("https://demo.seleniumeasy.com/basic-select-dropdown-demo.html", t)
         f.Select_XPath_Type("//select[@id='select-demo']", "value", "Tuesday", t)
         f.Salida()
 
     def test_POM3(self):
         driver = self.driver
-        f = Funciones_Globales(
-            driver)  # 5. Se importan los driver tanto de Funciones_Globales, Pagina_Login y DropdownForm
+        f = Funciones_Globales(driver)  # 5. Se importan los driver tanto de Funciones_Globales, Pagina_Login y DropdownForm
         f.Navegar("https://demo.seleniumeasy.com/basic-select-dropdown-demo.html", t)
         f.Select_XPath_Type("//select[@id='select-demo']", "index", "4", t)
+        f.Salida()
+
+    def test_POM4(self):
+        driver = self.driver
+        f = Funciones_Globales(driver) # 5. Se importan los driver tanto de Funciones_Globales, Pagina_Login y DropdownForm
+        f.Navegar("https://demo.seleniumeasy.com/basic-select-dropdown-demo.html",t)
+        f.Select_ID_Type("select-demo","text","Monday",t) # 6. Se implementa la función pero con ID
+        f.Salida()
+
+    def test_POM5(self):
+        driver = self.driver
+        f = Funciones_Globales(driver)  # 5. Se importan los driver tanto de Funciones_Globales, Pagina_Login y DropdownForm
+        f.Navegar("https://demo.seleniumeasy.com/basic-select-dropdown-demo.html", t)
+        f.Select_ID_Type("select-demo", "value", "Tuesday", t)
+        f.Salida()
+
+    def test_POM6(self):
+        driver = self.driver
+        f = Funciones_Globales(driver)  # 5. Se importan los driver tanto de Funciones_Globales, Pagina_Login y DropdownForm
+        f.Navegar("https://demo.seleniumeasy.com/basic-select-dropdown-demo.html", t)
+        f.Select_ID_Type("select-demo", "index", "4", t)
         f.Salida()
 
     def tearDown(self):

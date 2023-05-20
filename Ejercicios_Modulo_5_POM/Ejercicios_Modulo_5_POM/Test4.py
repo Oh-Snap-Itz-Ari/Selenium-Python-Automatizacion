@@ -20,28 +20,20 @@ class baseTest(unittest.TestCase):
     def test_POM(self): # 4. Es importante que se añada el "test_name" porque sino nos va a dar error
         driver = self.driver
         f = Funciones_Globales(driver) # 5. Se importan los driver tanto de Funciones_Globales, Pagina_Login y DropdownForm
-        f.Navegar("https://demo.seleniumeasy.com/basic-select-dropdown-demo.html",t)
-        f.Select_XPath_Text("//select[@id='select-demo']","Monday",t)
+        f.Navegar("https://testpages.herokuapp.com/styled/file-upload-test.html",t)
+        f.Upload_XPath("//input[@id='fileinput']","C:/Users/alexf/Desktop/Automatización Selenium Python/Ejercicios/img/1.jpg",t)
+        f.ClickByXPath("//input[@id='itsanimage']",t)
+        f.ClickByXPath("//input[@value='Upload']", t)
         f.Salida()
 
     def test_POM2(self): # 4. Es importante que se añada el "test_name" porque sino nos va a dar error
         driver = self.driver
         f = Funciones_Globales(driver) # 5. Se importan los driver tanto de Funciones_Globales, Pagina_Login y DropdownForm
-        f.Navegar("https://demo.seleniumeasy.com/basic-select-dropdown-demo.html",t)
-        f.Select_ID_Text("select-demo","Tuesday",t)
+        f.Navegar("https://testpages.herokuapp.com/styled/file-upload-test.html",t)
+        f.Upload_ID("fileinput","C:/Users/alexf/Desktop/Automatización Selenium Python/Ejercicios/img/1.jpg",t)
+        f.ClickByID("itsanimage",t)
+        f.ClickByXPath("//input[@value='Upload']", t)
         f.Salida()
-
-    def test_POM3(self): # 4. Es importante que se añada el "test_name" porque sino nos va a dar error
-        driver = self.driver
-        f = Funciones_Globales(driver) # 5. Se importan los driver tanto de Funciones_Globales, Pagina_Login y DropdownForm
-        f.Navegar("https://demo.seleniumeasy.com/basic-select-dropdown-demo.html",t)
-        f.Select_XPath_Text("//select[@id='select-demo']","Wednesday",t)
-        f.Salida()
-
-    def tearDown(self):
-        driver = self.driver
-        time.sleep(2)
-        driver.close()
 
 if __name__ == '__main__':
     unittest.main()
