@@ -21,18 +21,18 @@ class baseTest(unittest.TestCase):
         driver = self.driver
         f = Funciones_Globales(driver) # 5. Se importan los driver tanto de Funciones_Globales, Pagina_Login y DropdownForm
         f.Navegar("https://testpages.herokuapp.com/styled/file-upload-test.html",t)
-        f.Upload_XPath("//input[@id='fileinput']","C:/Users/alexf/Desktop/Automatización Selenium Python/Ejercicios/img/1.jpg",t)
-        f.ClickByXPath("//input[@id='itsanimage']",t)
-        f.ClickByXPath("//input[@value='Upload']", t)
+        f.Upload_Mixto("XPATH","//input[@id='fileinput']","C:/Users/alexf/Desktop/Automatización Selenium Python/Ejercicios/img/1.jpg",t)
+        f.ClickMixto("XPATH","//input[@id='itsanimage']",t)
+        f.ClickMixto("XPATH","//input[@value='Upload']", t)
         f.Salida()
 
     def test_POM2(self): # 4. Es importante que se añada el "test_name" porque sino nos va a dar error
         driver = self.driver
         f = Funciones_Globales(driver) # 5. Se importan los driver tanto de Funciones_Globales, Pagina_Login y DropdownForm
         f.Navegar("https://testpages.herokuapp.com/styled/file-upload-test.html",t)
-        f.Upload_ID("fileinput","C:/Users/alexf/Desktop/Automatización Selenium Python/Ejercicios/img/1.jpg",t)
-        f.ClickByID("itsanimage",t)
-        f.ClickByXPath("//input[@value='Upload']", t)
+        f.Upload_Mixto("ID","fileinput","C:/Users/alexf/Desktop/Automatización Selenium Python/Ejercicios/img/1.jpg",t)
+        f.ClickMixto("ID","itsanimage",t)
+        f.ClickMixto("XPATH","//input[@value='Upload']", t)
         f.Salida()
 
 if __name__ == '__main__':

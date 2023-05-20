@@ -24,7 +24,7 @@ class baseTest(unittest.TestCase):
         for n in range(1,7):
             if (n == 3 or n == 4 or n == 7):
                 continue
-            f.Clic_Multiple_XPath(t,"(//input[contains(@type,'checkbox')])["+str(n)+"]")
+            f.Clic_Multiple_Mixto("XPATH",t,"(//input[contains(@type,'checkbox')])["+str(n)+"]")
         f.Salida()
 
 if __name__ == '__main__':

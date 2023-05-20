@@ -21,21 +21,21 @@ class baseTest(unittest.TestCase):
         driver = self.driver
         f = Funciones_Globales(driver) # 5. Se importan los driver tanto de Funciones_Globales, Pagina_Login y DropdownForm
         f.Navegar("https://demo.seleniumeasy.com/basic-select-dropdown-demo.html",t)
-        f.Select_XPath_Text("//select[@id='select-demo']","Monday",t)
+        f.Select_Mixto_Text("XPATH","//select[@id='select-demo']","Monday",t)
         f.Salida()
 
     def test_POM2(self): # 4. Es importante que se añada el "test_name" porque sino nos va a dar error
         driver = self.driver
         f = Funciones_Globales(driver) # 5. Se importan los driver tanto de Funciones_Globales, Pagina_Login y DropdownForm
         f.Navegar("https://demo.seleniumeasy.com/basic-select-dropdown-demo.html",t)
-        f.Select_ID_Text("select-demo","Tuesday",t)
+        f.Select_Mixto_Text("ID","select-demo","Tuesday",t)
         f.Salida()
 
     def test_POM3(self): # 4. Es importante que se añada el "test_name" porque sino nos va a dar error
         driver = self.driver
         f = Funciones_Globales(driver) # 5. Se importan los driver tanto de Funciones_Globales, Pagina_Login y DropdownForm
         f.Navegar("https://demo.seleniumeasy.com/basic-select-dropdown-demo.html",t)
-        f.Select_XPath_Text("//select[@id='select-demo']","Wednesday",t)
+        f.Select_Mixto_Text("XPATH","//select[@id='select-demo']","Wednesday",t)
         f.Salida()
 
     def tearDown(self):

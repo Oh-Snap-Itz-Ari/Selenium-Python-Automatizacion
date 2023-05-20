@@ -20,7 +20,7 @@ class Pagina_Login (): # 1. Se crea la clase Pagina_Login y se crea la inicializ
         driver = self.driver
         f = Funciones_Globales(driver)  # 2. Estas 2 primeras lineas siempre se deben hacer, para que se vinculen con el Funciones.py
         f.Navegar(url, t)
-        f.TextoByXPath("//input[@id='user-name']", username, t)
-        f.TextoByID("password", password, t)
-        f.ClickByXPath("//input[@id='login-button']", t)
+        f.TextoMixto("XPATH","//input[@id='user-name']", username, t)
+        f.TextoMixto("ID","password", password, t)
+        f.ClickMixto("XPATH","//input[@id='login-button']", t)
         return t
