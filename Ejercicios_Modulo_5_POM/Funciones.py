@@ -245,6 +245,13 @@ class Funciones_Globales (): # 1. Se crea la clase Funciones_Globales y se crea 
                     print(ex.msg)
                     print("\n- No se encontró el elemento:\n- " + num)
 
+    # Función que realiza una captura de pantalla
+    def Screenshot(self, name, tiempo):
+        self.driver.get_screenshot_as_file("C:/Users/alexf/Desktop/Automatización Selenium Python/Ejercicios/img/scr/{}.png".format(name))
+        print("\nLa Captura ha sido guardada con el nombre -> ({}.png)".format(name))
+        t = time.sleep(tiempo)
+        return t
+
     # Función que brinda un mensaje de finalización exitoso
     def Salida(self):
         print("\nLa prueba ha sido finalizada de forma satisfactoria.")

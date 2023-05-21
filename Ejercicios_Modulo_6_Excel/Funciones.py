@@ -274,6 +274,13 @@ class Funciones_Globales (): # 2. Se crea la clase Funciones_Excel y se crea la 
                 print("\n- No se encontró el elemento:\n- " + selector)
                 return "No existe" # 18. Retorna el valor de que no se encontró el elemento y por ende NO existe
 
+    # Función que realiza una captura de pantalla
+    def Screenshot(self, name, tiempo):
+        self.driver.get_screenshot_as_file("C:/Users/alexf/Desktop/Automatización Selenium Python/Ejercicios/img/scr/{}.png".format(name))
+        print("\nLa Captura ha sido guardada con el nombre -> ({}.png)".format(name))
+        t = time.sleep(tiempo)
+        return t
+
     # Función que brinda un mensaje de finalización exitoso
     def Salida(self):
         print("\nLa prueba ha sido finalizada de forma satisfactoria.")

@@ -40,6 +40,7 @@ class baseExcel(unittest.TestCase):
             e = fg.FindExistMixto("XPATH","//p[@id='email']",t) # 6. Busca el correo a través de su XPATH y si existe lo indica
 
             if (e == "Existe"): #7. Valida el valor que retorna la función
+                fg.Screenshot("TC_0"+str(r-1),t)
                 print("\n Se escribió de forma satisfactoria en el archivo que se encuentra en la ruta\n-> " +ruta)
                 # 8. Se especifica que en el campo 5 se debe escribir el mensaje correspondiente tras hacer una inserción
                 fe.writeData(ruta,"Hoja1",r,5,"Se insertó de forma satisfactoria")
