@@ -9,7 +9,7 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
-from Ejercicios_Modulo_5_POM.Funciones import Funciones_Globales
+from Ejercicios.Ejercicios_Modulo_5_POM.Funciones import Funciones_Globales
 
 class Pagina_Login (): # 1. Se crea la clase Pagina_Login y se crea la inicialización dentro de esta
     def __init__(self,driver):

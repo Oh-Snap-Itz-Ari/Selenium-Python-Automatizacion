@@ -6,8 +6,8 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
-from Ejercicios_Modulo_6_Excel.Funciones import Funciones_Globales
-from Ejercicios_Modulo_6_Excel.Funciones_Excel import Funciones_Excel
+from Ejercicios.Ejercicios_Modulo_6_Excel.Funciones import Funciones_Globales
+from Ejercicios.Ejercicios_Modulo_6_Excel.Funciones_Excel import Funciones_Excel
 
 t=0.1
 

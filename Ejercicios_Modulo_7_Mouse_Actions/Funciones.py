@@ -294,6 +294,36 @@ class Funciones_Globales (): # 2. Se crea la clase Funciones_Excel y se crea la 
                 print("\n- No se encontró el elemento:\n- " + selector)
                 return t
 
+    # Función que permite dar clic derecho al elemento seleccionado, lo anterior a través de la busqueda del XPATH o ID
+    def ClickDerecho(self, tipo, selector, tiempo=.2):
+        if (tipo == "XPATH"):
+            try:
+                val = self.FindElementByXPATH(selector)
+                act = ActionChains(self.driver)
+                act.context_click(val).perform()
+                print("\n- Se da click derecho en el campo con {} -> ({})".format(tipo, selector))
+                t = time.sleep(tiempo)  # 16. Recibe el valor de tiempo y lo implementa una vez que se escribe el texto
+                return t
+
+            except TimeoutException as ex:
+                print(ex.msg)
+                print("\n- No se encontró el elemento:\n- " + selector)
+                return t
+
+        elif (tipo == "ID"):
+            try:
+                val = self.FindElementByID(selector)
+                act = ActionChains(self.driver)
+                act.context_click(val).perform()
+                print("\n- Se da click derecho en el campo con {} -> ({})".format(tipo, selector))
+                t = time.sleep(tiempo)  # 16. Recibe el valor de tiempo y lo implementa una vez que se escribe el texto
+                return t
+
+            except TimeoutException as ex:
+                print(ex.msg)
+                print("\n- No se encontró el elemento:\n- " + selector)
+                return t
+
     # Función que brinda un mensaje de finalización exitoso
     def Salida(self):
         print("\nLa prueba ha sido finalizada de forma satisfactoria.")
