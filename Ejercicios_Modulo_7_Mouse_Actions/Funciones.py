@@ -324,6 +324,166 @@ class Funciones_Globales (): # 2. Se crea la clase Funciones_Excel y se crea la 
                 print("\n- No se encontró el elemento:\n- " + selector)
                 return t
 
+    # Función que permite agarrar un objeto y soltarlo en una ruta especifica
+    def DragAndDrop(self, tipo, selector, selectordestino, tiempo=.2):
+        if (tipo == "XPATH"):
+            try:
+                val = self.FindElementByXPATH(selector)
+                destino = self.FindElementByXPATH(selectordestino) # 15. Se almacena el XPATH del elemento al que se va a soltar
+                act = ActionChains(self.driver)
+                act.drag_and_drop(val,destino).perform() # 16. Se especifica el elemento que toma y el elemento donde lo va a arrastrar
+                print("\n- Se selecciono el elemento ({}) de tipo {} y se soltó en -> ({})".format(selector,tipo,selectordestino))
+                t = time.sleep(tiempo)  # 17. Recibe el valor de tiempo y lo implementa una vez que se escribe el texto
+                return t
+
+            except TimeoutException as ex:
+                print(ex.msg)
+                print("\n- No se encontró el elemento:\n- " + selector)
+                return t
+
+        elif (tipo == "ID"):
+            try:
+                val = self.FindElementByID(selector)
+                destino = self.FindElementByID(selectordestino) # 15. Se almacena el ID del elemento al que se va a soltar
+                act = ActionChains(self.driver)
+                act.drag_and_drop(val,destino).perform() # 16. Se especifica el elemento que toma y el elemento donde lo va a arrastrar
+                print("\n- Se selecciono el elemento ({}) de tipo {} y se soltó en -> ({})".format(selector,tipo,selectordestino))
+                t = time.sleep(tiempo)  # 17. Recibe el valor de tiempo y lo implementa una vez que se escribe el texto
+                return t
+
+            except TimeoutException as ex:
+                print(ex.msg)
+                print("\n- No se encontró el elemento:\n- " + selector)
+                return t
+
+    # Función que permite agarrar un elemento, moverlo y soltarlo en la posición que se especifica (X,Y)
+    def DragAndDropXY(self, tipo, selector, x, y, tiempo=.2):
+        if (tipo == "XPATH"):
+            try:
+                self.driver.switch_to.frame(0) # 15. Se restablece la posición el iframe para que permita posicionarse en el X,Y seleccionado
+                val = self.FindElementByXPATH(selector)
+                act = ActionChains(self.driver)
+                act.drag_and_drop_by_offset(val,x,y).perform() # 16. Se especifica el elemento que toma y donde lo va a soltar (X,Y)
+                print("\n- Se selecciono el elemento ({}) de tipo {} y se soltó en las coordenadas (X,Y)-> ({},{})".format(selector,tipo,x,y))
+                t = time.sleep(tiempo)  # 17. Recibe el valor de tiempo y lo implementa una vez que se escribe el texto
+                return t
+
+            except TimeoutException as ex:
+                print(ex.msg)
+                print("\n- No se encontró el elemento:\n- " + selector)
+                return t
+
+        elif (tipo == "ID"):
+            try:
+                self.driver.switch_to.frame(0)
+                val = self.FindElementByID(selector)
+                act = ActionChains(self.driver)
+                act.drag_and_drop_by_offset(val,x,y).perform() # 16. Se especifica el elemento que toma y el elemento donde lo va a arrastrar
+                print("\n- Se selecciono el elemento ({}) de tipo {} y se soltó en las coordenadas (X,Y)-> ({},{})".format(selector,tipo,x,y))
+                t = time.sleep(tiempo)  # 17. Recibe el valor de tiempo y lo implementa una vez que se escribe el texto
+                return t
+
+            except TimeoutException as ex:
+                print(ex.msg)
+                print("\n- No se encontró el elemento:\n- " + selector)
+                return t
+
+    # Función que permite buscar un elemento (XPATH, ID), y a partir de este movernos en (X,Y) y dar clic en esta posición
+    def ClickXY(self, tipo, selector, x, y, tiempo=.2):
+        if (tipo == "XPATH"):
+            try:
+                # self.driver.switch_to.frame(0) No es necesario a menos que tenga un iFrame (Inspeccionar y validar)
+                val = self.FindElementByXPATH(selector)
+                act = ActionChains(self.driver)
+                act.move_to_element_with_offset(val,x,y).click().perform() # 16. Pone el puntero en la posición X,Y especificada y luego da click
+                print("\n- Se dio click al elemento ({}) de tipo {}, lo anterior en las siguientes coordenadas (X,Y)\n-> ({},{})".format(selector,tipo,x,y))
+                t = time.sleep(tiempo)  # 17. Recibe el valor de tiempo y lo implementa una vez que se escribe el texto
+                return t
+
+            except TimeoutException as ex:
+                print(ex.msg)
+                print("\n- No se encontró el elemento:\n- " + selector)
+                return t
+
+        elif (tipo == "ID"):
+            try:
+                # self.driver.switch_to.frame(0) No es necesario a menos que tenga un iFrame (Inspeccionar y validar)
+                val = self.FindElementByID(selector)
+                act = ActionChains(self.driver)
+                act.move_to_element_with_offset(val,x,y).click().perform() # 16. Pone el puntero en la posición X,Y especificada y luego da click
+                print("\n- Se dio click al elemento ({}) de tipo {}, lo anterior en las siguientes coordenadas (X,Y)\n-> ({},{})".format(selector,tipo,x,y))
+                t = time.sleep(tiempo)  # 17. Recibe el valor de tiempo y lo implementa una vez que se escribe el texto
+                return t
+
+            except TimeoutException as ex:
+                print(ex.msg)
+                print("\n- No se encontró el elemento:\n- " + selector)
+                return t
+
+    def Copiar(self, tipo, selector, tiempo=.2):
+        if (tipo == "XPATH"):
+            try:
+                val = self.FindElementByXPATH(selector)
+                self.ClickMixto("XPATH", selector, tiempo)
+                act = ActionChains(self.driver)
+                act.key_down(Keys.CONTROL).send_keys("a").key_up(Keys.CONTROL).perform() # 4. El ctrl + a permite seleccionar toda una palabra
+                act.key_down(Keys.CONTROL).send_keys("c").key_up(Keys.CONTROL).perform() # 4. El ctrl + c permite copiar la palabra
+                print("\n- Se copió de forma satisfactoria el contenido del elemento con {} -> ({})".format(tipo,selector))
+                t = time.sleep(tiempo)
+                return t
+
+            except TimeoutException as ex:
+                print(ex.msg)
+                print("\n- No se encontró el elemento:\n- " + selector)
+                return t
+
+        elif (tipo == "ID"):
+            try:
+                val = self.FindElementByID(selector)
+                self.ClickMixto("ID",selector,tiempo)
+                act = ActionChains(self.driver)
+                act.key_down(Keys.CONTROL).send_keys("a").key_up(Keys.CONTROL).perform()  # 4. El ctrl + a permite seleccionar toda una palabra
+                act.key_down(Keys.CONTROL).send_keys("c").key_up(Keys.CONTROL).perform()  # 4. El ctrl + c permite copiar la palabra
+                print("\n- Se copió de forma satisfactoria el contenido del elemento con {} -> ({})".format(tipo,selector))
+                t = time.sleep(tiempo)
+                return t
+
+            except TimeoutException as ex:
+                print(ex.msg)
+                print("\n- No se encontró el elemento:\n- " + selector)
+                return t
+
+    def Pegar(self, tipo, selector, tiempo=.2):
+        if (tipo == "XPATH"):
+            try:
+                val = self.FindElementByXPATH(selector)
+                self.ClickMixto("XPATH", selector, tiempo)
+                act = ActionChains(self.driver)
+                act.key_down(Keys.CONTROL).send_keys("v").key_up(Keys.CONTROL).perform()  # 4. El ctrl + v permite pegar
+                print("\n- Se pegó de forma satisfactoria el contenido del en la ruta con {} -> ({})".format(tipo,selector))
+                t = time.sleep(tiempo)
+                return t
+
+            except TimeoutException as ex:
+                print(ex.msg)
+                print("\n- No se encontró el elemento:\n- " + selector)
+                return t
+
+        elif (tipo == "ID"):
+            try:
+                val = self.FindElementByID(selector)
+                self.ClickMixto("ID", selector, tiempo)
+                act = ActionChains(self.driver)
+                act.key_down(Keys.CONTROL).send_keys("v").key_up(Keys.CONTROL).perform()  # 4. El ctrl + v permite pegar
+                print("\n- Se pegó de forma satisfactoria el contenido del en la ruta con {} -> ({})".format(tipo,selector))
+                t = time.sleep(tiempo)
+                return t
+
+            except TimeoutException as ex:
+                print(ex.msg)
+                print("\n- No se encontró el elemento:\n- " + selector)
+                return t
+
     # Función que brinda un mensaje de finalización exitoso
     def Salida(self):
         print("\nLa prueba ha sido finalizada de forma satisfactoria.")
