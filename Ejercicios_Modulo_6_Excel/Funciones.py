@@ -484,6 +484,18 @@ class Funciones_Globales (): # 2. Se crea la clase Funciones_Excel y se crea la 
                 print("\n- No se encontró el elemento:\n- " + selector)
                 return t
 
+    def ScrollPageDown(self, tiempo=.2):
+        for x in range (10):
+            self.driver.find_element(By.TAG_NAME, value="body").send_keys(Keys.PAGE_DOWN)
+        t = time.sleep(tiempo)
+        return t
+
+    def ScrollPageUp(self, tiempo=.2):
+        for x in range(10):
+            self.driver.find_element(By.TAG_NAME, value="body").send_keys(Keys.PAGE_UP)
+        t = time.sleep(tiempo)
+        return t
+
     # Función que brinda un mensaje de finalización exitoso
     def Salida(self):
         print("\nLa prueba ha sido finalizada de forma satisfactoria.")

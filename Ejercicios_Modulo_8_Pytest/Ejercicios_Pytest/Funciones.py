@@ -18,6 +18,7 @@ class Funciones_Globales (): # 2. Se crea la clase Funciones_Excel y se crea la 
     def Navegar(self,url,tiempo):
         self.driver.get(url) # 3. Espera a que se le envie url a través de la función Navegar
         self.driver.maximize_window()
+        self.driver.implicitly_wait(20)
         print("\nPágina abierta de forma satisfactoria:\n"+str(url))
         t = time.sleep(tiempo)
         return t
