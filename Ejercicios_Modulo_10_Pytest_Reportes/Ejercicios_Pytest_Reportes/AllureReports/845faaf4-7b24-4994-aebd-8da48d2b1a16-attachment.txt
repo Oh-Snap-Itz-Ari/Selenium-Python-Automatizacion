@@ -1,0 +1,30 @@
+
+Página abierta de forma satisfactoria:
+https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+
+- Escribiendo en el campo con XPATH (//input[contains(@name,'username')]) el texto -> Admin
+
+- Escribiendo en el campo con XPATH (//input[contains(@type,'password')]) el texto -> admin123
+
+- Se da click en el campo con XPATH -> (//button[@type='submit'][contains(.,'Login')])
+
+
+----------Inicio de la Prueba Login #2----------
+
+
+
+¡Bienvenido al Login #2!
+
+- Se da click en el campo con XPATH -> (//span[@class='oxd-text oxd-text--span oxd-main-menu-item--name'][contains(.,'Admin')])
+
+- Se da click en el campo con XPATH -> (//span[@class='oxd-topbar-body-nav-tab-item'][contains(.,'User Management')])
+
+- Se da click en el campo con XPATH -> ((//li[contains(.,'Users')])[2])
+
+- Escribiendo en el campo con XPATH (//*[@id='app']/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[1]/div/div[2]/input) el texto -> keerthi
+
+----------Final de la Prueba Login #2----------
+
+
+----------Final de la Prueba Login #1----------
+

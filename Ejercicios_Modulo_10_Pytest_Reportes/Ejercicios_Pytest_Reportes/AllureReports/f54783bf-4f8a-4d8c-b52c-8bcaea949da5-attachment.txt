@@ -1,0 +1,48 @@
+
+Página abierta de forma satisfactoria:
+https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F
+
+- Escribiendo en el campo con XPATH (//input[contains(@id,'Email')]) el texto -> admin@yourstore.com
+
+- Escribiendo en el campo con XPATH (//input[@id='Password']) el texto -> admin
+
+- Se da click en el campo con XPATH -> (//button[@type='submit'][contains(.,'Log in')])
+
+
+----------Inicio de la Prueba Login #1----------
+
+
+
+¡Bienvenido al Login #1!
+
+- Se da click en el campo con XPATH -> ((//p[contains(.,'Customers')])[1])
+
+- Se da click en el campo con XPATH -> ((//p[contains(.,'Customers')])[2])
+
+- Escribiendo en el campo con XPATH (//input[@name='SearchEmail']) el texto -> victoria_victoria@nopCommerce.com
+
+- Se da click en el campo con XPATH -> (//button[@id='search-customers'])
+
+- Se da click en el campo con XPATH -> (//a[@href='/Admin/Customer/Create'])
+
+- Escribiendo en el campo con XPATH (//input[@id='Email']) el texto -> Prue125478@gmail.com
+
+- Escribiendo en el campo con XPATH (//input[@id='Password']) el texto -> Alfamego#654789
+
+- Escribiendo en el campo con XPATH (//input[@id='FirstName']) el texto -> Alex Fabián
+
+- Escribiendo en el campo con XPATH (//input[@id='LastName']) el texto -> Melo Gómez
+
+- Se da click en el campo con XPATH -> (//input[@id='Gender_Male'])
+
+- Escribiendo en el campo con XPATH (//input[@id='DateOfBirth']) el texto -> 4/5/2000
+
+- Escribiendo en el campo con XPATH (//input[@id='Company']) el texto -> Apple Company
+
+- Se da click en el campo con XPATH -> (//input[@id='IsTaxExempt'])
+
+- Se realizó la busqueda a través de (value) y el campo seleccionado es equivalente a -> (2)
+
+- Escribiendo en el campo con XPATH (//textarea[@id='AdminComment']) el texto -> Prueba Test Mr Blue Sky
+
+- Se da click en el campo con XPATH -> (//button[@name='save'])

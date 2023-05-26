@@ -1,5 +1,7 @@
 import time
 import unittest
+
+import allure
 import openpyxl # 1. Importante añadir la libreria
 
 from selenium.webdriver.common.by import By
@@ -9,6 +11,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver import ActionChains
+from allure_commons.types import AttachmentType
 
 class Funciones_Globales (): # 2. Se crea la clase Funciones_Excel y se crea la inicialización dentro de esta
     def __init__(self,driver):
@@ -421,6 +424,7 @@ class Funciones_Globales (): # 2. Se crea la clase Funciones_Excel y se crea la 
                 print("\n- No se encontró el elemento:\n- " + selector)
                 return t
 
+    # Función que permite copiar un elemento (XPATH, ID)
     def Copiar(self, tipo, selector, tiempo=.2):
         if (tipo == "XPATH"):
             try:
@@ -454,6 +458,7 @@ class Funciones_Globales (): # 2. Se crea la clase Funciones_Excel y se crea la 
                 print("\n- No se encontró el elemento:\n- " + selector)
                 return t
 
+    # Función que permite pegar un elemento (XPATH, ID), lo anterior tras haberlo copiado con antelación
     def Pegar(self, tipo, selector, tiempo=.2):
         if (tipo == "XPATH"):
             try:
@@ -485,17 +490,24 @@ class Funciones_Globales (): # 2. Se crea la clase Funciones_Excel y se crea la 
                 print("\n- No se encontró el elemento:\n- " + selector)
                 return t
 
+    # Función que permite bajar el scroll y llegar al final de la página
     def ScrollPageDown(self, tiempo=.2):
         for x in range (10):
             self.driver.find_element(By.TAG_NAME, value="body").send_keys(Keys.PAGE_DOWN)
         t = time.sleep(tiempo)
         return t
 
+    # Función que permite subir el scroll y llegar al inicio de la página
     def ScrollPageUp(self, tiempo=.2):
         for x in range(10):
             self.driver.find_element(By.TAG_NAME, value="body").send_keys(Keys.PAGE_UP)
         t = time.sleep(tiempo)
         return t
+
+    # Función que permite bajar el scroll y llegar al final de la página
+    def ScreenshotAllure(self, name, tiempo=.2):
+        allure.attach(self.driver.get_screenshot_as_png(), name=name, attachment_type=AttachmentType.PNG)
+        t = time.sleep(tiempo)
 
     # Función que brinda un mensaje de finalización exitoso
     def Salida(self):
